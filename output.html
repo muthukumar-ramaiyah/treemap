@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treemap and Table Representation</title>
+    <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+    <script src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
+    <style>
+        .passed-100 {
+            background-color: green;
+            color: white;
+        }
+        .passed-90-99 {
+            background-color: yellow;
+        }
+        .passed-below-90 {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="treemap-container" style="width: 600px; height: 400px;"></div>
+    <div id="table-container"></div>
+
+    <script>
+        const tableData = [{"app":"cims2","total":35,"passed":20,"failed":13,"passPercentage":"57.14","className":"passed-below-90"},{"app":"cims","total":10,"passed":5,"failed":3,"passPercentage":"50.00","className":"passed-below-90"},{"app":"ca","total":10,"passed":5,"failed":3,"passPercentage":"50.00","className":"passed-below-90"},{"app":"dealer","total":10,"passed":9,"failed":1,"passPercentage":"90.00","className":"passed-90-99"},{"app":"cbc","total":100,"passed":100,"failed":0,"passPercentage":"100.00","className":"passed-100"}];
+        const treemapData = [{"id":"cims2","name":"cims2","value":57.14,"color":"red"},{"id":"cims","name":"cims","value":50,"color":"red"},{"id":"ca","name":"ca","value":50,"color":"red"},{"id":"dealer","name":"dealer","value":90,"color":"yellow"},{"id":"cbc","name":"cbc","value":100,"color":"green"}];
+
+        // Create table
+        const table = new Tabulator("#table-container", {
+            data: tableData,
+            layout: "fitColumns",
+            columns: [
+                { title: "App", field: "app" },
+                { title: "Total", field: "total" },
+                { title: "Passed", field: "passed" },
+                { title: "Failed", field: "failed" },
+                {
+                    title: "Pass Percentage",
+                    field: "passPercentage",
+                    formatter: function(cell, formatterParams, onRendered) {
+                        const className = cell.getRow().getData().className;
+                        return `<span class="${className}">${cell.getValue()}</span>`;
+                    }
+                },
+            ],
+        });
+
+        // Create treemap
+        Highcharts.chart('treemap-container', {
+            series: [{
+                type: 'treemap',
+                layoutAlgorithm: 'squarified',
+                data: treemapData
+            }],
+            title: {
+                text: 'Pass Percentage Treemap'
+            }
+        });
+    </script>
+</body>
+</html>
