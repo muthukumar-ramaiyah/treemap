@@ -11,51 +11,75 @@
     <script src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
     <style>
         .passed-100 {
-            background-color: green;
+            background-color: #99ffbb;
             color: white;
         }
         .passed-90-99 {
-            background-color: yellow;
+            background-color: #ffff80;
         }
         .passed-below-90 {
-            background-color: red;
+            background-color: #ff9999;
             color: white;
         }
+    .highcharts-point {
+        rx: 10;
+        ry: 10;
+    }
+
     </style>
 </head>
 <body>
-    <div id="treemap-container" style="width: 600px; height: 400px;"></div>
-    <div id="table-container"></div>
+<div style="width: 600px; margin: auto; text-align: center;">
 
+  <!-- Treemap container -->
+  <div id="treemap-container" style="width: 600px; height: 400px; margin: auto;"></div>
+
+  <!-- Custom legend -->
+  <div id="legends" style="margin-top: 12px; font-family: Arial, sans-serif;">
+    <span style="background-color: #80ffaa; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+      100%
+    </span>
+    <span style="background-color: #ffff80; color: black; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+      90–99%
+    </span>
+    <span style="background-color: #ff4d4d; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+      Below 90%
+    </span>
+  </div>
+
+</div>
+    <div id="table-container"></div>
     <script>
-        const tableData = [{"app":"cims2","total":35,"passed":25,"failed":8,"passPercentage":"71.43","className":"passed-below-90"},{"app":"cims","total":10,"passed":5,"failed":3,"passPercentage":"50.00","className":"passed-below-90"},{"app":"ca","total":10,"passed":5,"failed":3,"passPercentage":"50.00","className":"passed-below-90"},{"app":"dealer","total":10,"passed":9,"failed":1,"passPercentage":"90.00","className":"passed-90-99"},{"app":"cbc","total":100,"passed":100,"failed":0,"passPercentage":"100.00","className":"passed-100"}];
-        const treemapData = [{"id":"cims2","name":"cims2","value":71.43,"color":"red"},{"id":"cims","name":"cims","value":50,"color":"red"},{"id":"ca","name":"ca","value":50,"color":"red"},{"id":"dealer","name":"dealer","value":90,"color":"yellow"},{"id":"cbc","name":"cbc","value":100,"color":"green"}];
+        // const tableData = [{"api":"rates","total":35,"passed":25,"failed":8,"passPercentage":"73.53","className":"passed-below-90"},{"api":"cims","total":10,"passed":5,"failed":3,"passPercentage":"55.56","className":"passed-below-90"},{"api":"ca","total":10,"passed":5,"failed":3,"passPercentage":"55.56","className":"passed-below-90"},{"api":"dealer","total":10,"passed":9,"failed":1,"passPercentage":"90.00","className":"passed-90-99"},{"api":"cbc","total":100,"passed":100,"failed":0,"passPercentage":"100.00","className":"passed-100"}];
+        const treemapData = [{"id":"rates","name":"Rates (73.53%)","value":73.53,"color":"#ff4d4d"},{"id":"cims","name":"CIMS (55.56%)","value":55.56,"color":"#ff4d4d"},{"id":"ca","name":"Client Access (55.56%)","value":55.56,"color":"#ff4d4d"},{"id":"dealer","name":"Dealer (90.00%)","value":90,"color":"#ffff80"},{"id":"cbc","name":"Comniety Business Center (100.00%)","value":100,"color":"#80ffaa"}];
 
         // Create table
-        const table = new Tabulator("#table-container", {
-            data: tableData,
-            layout: "fitColumns",
-            columns: [
-                { title: "App", field: "app" },
-                { title: "Total", field: "total" },
-                { title: "Passed", field: "passed" },
-                { title: "Failed", field: "failed" },
-                {
-                    title: "Pass Percentage",
-                    field: "passPercentage",
-                    formatter: function(cell, formatterParams, onRendered) {
-                        const className = cell.getRow().getData().className;
-                        return `<span class="${className}">${cell.getValue()}</span>`;
-                    }
-                },
-            ],
-        });
+        // const table = new Tabulator("#table-container", {
+        //     data: tableData,
+        //     layout: "fitColumns",
+        //     columns: [
+        //         { title: "App", field: "app" },
+        //         { title: "Total", field: "total" },
+        //         { title: "Passed", field: "passed" },
+        //         { title: "Failed", field: "failed" },
+        //         {
+        //             title: "Pass Percentage",
+        //             field: "passPercentage",
+        //             formatter: function(cell, formatterParams, onRendered) {
+        //                 const className = cell.getRow().getData().className;
+        //                 return `<span class="${className}">${cell.getValue()}</span>`;
+        //             }
+        //         },
+        //     ],
+        // });
 
         // Create treemap
         Highcharts.chart('treemap-container', {
             series: [{
                 type: 'treemap',
                 layoutAlgorithm: 'squarified',
+                borderRadius: 10,   // ✅ Add rounded corners here
+                borderWidth: 5,
                 data: treemapData
             }],
             title: {

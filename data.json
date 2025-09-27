@@ -1,7 +1,7 @@
 {
     "apps": {
         "salesforce": {
-            "cims2": {
+            "rates": {
                 "total": 35,
                 "passed": 25,
                 "failed": 8,
@@ -41,11 +41,88 @@
                 "skipped": 0,
                 "status": "passed"
             }
+        },
+        "core-processing.rewards": {
+            "cims2": {
+                "total": 35,
+                "passed": 25,
+                "failed": 8,
+                "error": 1,
+                "skipped": 1,
+                "status": "failed"
+            },
+            "cims": {
+                "total": 10,
+                "passed": 5,
+                "failed": 3,
+                "error": 1,
+                "skipped": 1,
+                "status": "failed"
+            },
+            "ca": {
+                "total": 10,
+                "passed": 5,
+                "failed": 3,
+                "error": 1,
+                "skipped": 1,
+                "status": "failed"
+            },
+            "dealer": {
+                "total": 10,
+                "passed": 9,
+                "failed": 1,
+                "error": 0,
+                "skipped": 0,
+                "status": "failed"
+            },
+            "cbc": {
+                "total": 100,
+                "passed": 100,
+                "failed": 0,
+                "error": 0,
+                "skipped": 0,
+                "status": "passed"
+            },
+            "cbc2": {
+                "total": 100,
+                "passed": 99,
+                "failed": 0,
+                "error": 0,
+                "skipped": 1,
+                "status": "passed"
+            }
         }
     },
     "legend": {
-        "green": 100,
-        "yellow": 90,
-        "red": 0
+        "passed-100": "#80ffaa",
+        "passed-90-99": "#ffff80",
+        "passed-below-90": "#ff4d4d"
+    },
+    "mappings": {
+        "apps": {
+            "salesforce": {
+                "cims": {
+                    "folder": "CIMS API",
+                    "api_name": "CIMS"
+                },
+                "ca": {
+                    "folder": "CA API",
+                    "api_name": "Client Access"
+                },
+                "dealer": {
+                    "folder": "Dealer API",
+                    "api_name": "Dealer"
+                },
+                "cbc": {
+                    "folder": "CBC API",
+                    "api_name": "Comniety Business Center"
+                },
+                "rates": {
+                    "folder": "Rates API",
+                    "api_name": "Rates"
+                }
+            },
+            "core-processing.rewards": "Core Processing Rewards"
+        }
     }
 }
