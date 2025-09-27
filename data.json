@@ -3,8 +3,8 @@
         "salesforce": {
             "cims2": {
                 "total": 35,
-                "passed": 20,
-                "failed": 13,
+                "passed": 25,
+                "failed": 8,
                 "error": 1,
                 "skipped": 1,
                 "status": "failed"
