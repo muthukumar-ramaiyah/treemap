@@ -133,7 +133,7 @@ const html = `
                 data: treemapData
             }],
             title: {
-                text: 'Pass Percentage Treemap'
+                text: 'Pass Percentage'
             }
         });
     </script>
