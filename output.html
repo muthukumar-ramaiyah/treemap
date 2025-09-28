@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treemap and Table Representation</title>
     <link rel="stylesheet" href="https://unpkg.com/tabulator-tables@5.5.2/dist/css/tabulator.min.css">
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/treemap.js"></script>
+    <!-- <script src="https://code.highcharts.com/highcharts.js"></script> -- IGNORE - -->
+    <script src="./modules/highcharts.js"></script>
+    <!-- <script src="https://code.highcharts.com/modules/treemap.js"></script> -- IGNORE - -->
+    <script src="./modules/treemap.js"></script>
     <script src="https://unpkg.com/tabulator-tables@5.5.2/dist/js/tabulator.min.js"></script>
     <style>
         .passed-100 {
@@ -29,24 +31,22 @@
     </style>
 </head>
 <body>
-<div style="width: 600px; margin: auto; text-align: center;">
-
-  <!-- Treemap container -->
-  <div id="treemap-container" style="width: 600px; height: 400px; margin: auto;"></div>
-
-  <!-- Custom legend -->
-  <div id="legends" style="margin-top: 12px; font-family: Arial, sans-serif;">
-    <span style="background-color: #80ffaa; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
-      100%
-    </span>
-    <span style="background-color: #ffff80; color: black; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
-      90–99%
-    </span>
-    <span style="background-color: #ff4d4d; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
-      Below 90%
-    </span>
-  </div>
-
+<div id="treemap-area" style="width: 600px; margin: auto; text-align: center;">
+    <!-- Treemap container -->
+    <div id="treemap-container" style="width: 600px; height: 400px; margin: auto;"></div>
+    <!-- Custom legend -->
+    <div id="legends" style="margin-top: 12px; font-family: Arial, sans-serif;">
+        <span style="background-color: #80ffaa; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+            100%
+        </span>
+        <span style="background-color: #ffff80; color: black; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+            90–99%
+        </span>
+        <span style="background-color: #ff4d4d; color: white; padding: 4px 10px; border-radius: 4px; margin: 0 6px;">
+            Below 90%
+        </span>
+    </div>
+    <br />
 </div>
     <div id="table-container"></div>
     <script>
