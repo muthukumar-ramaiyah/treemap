@@ -23,7 +23,7 @@ const puppeteer = require('puppeteer');
     const element = await page.$('#treemap-area');
 
     // Take screenshot of only that element
-    await element.screenshot({ path: 'treemap.png' });
+    await element.screenshot({ path: 'treemap.jpeg', type: 'jpeg', quality: 40 });
 
     // Take screenshot
     // await page.screenshot({ path: 'treemap.png' });
